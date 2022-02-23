@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Tasks from "./pages/Tasks"
 
-const routes: React.FC = () => {
+const Router: React.FC = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
@@ -13,4 +13,4 @@ const routes: React.FC = () => {
     )
 }
 
-export default routes;
+export default Router;
