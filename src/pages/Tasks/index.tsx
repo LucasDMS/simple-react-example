@@ -1,7 +1,7 @@
 import React from "react";
 
-const Tasks: React.FC = () => {
+const Home: React.FC = () => {
     return <h1>Tasks page</h1>
 }
 
-export default Tasks;
+export default Home;
