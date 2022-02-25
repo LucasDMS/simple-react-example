@@ -4,6 +4,8 @@ import api from '../../services/api'
 
 import moment from 'moment'
 
+import './index.css'
+
 interface ITasks {
     id: number;
     title: string;
@@ -13,7 +15,7 @@ interface ITasks {
     updated_at: Date;
 }
 
-const Home: React.FC = () => {
+const Tasks: React.FC = () => {
 
     const [ tasks, setTasks ] = useState<ITasks[]>([])
 
@@ -34,7 +36,11 @@ const Home: React.FC = () => {
     return (
         <div className="container">
             <br/>
-            <h1>Tasks</h1>
+            <div className="task-header d-flex">
+                <h1>Tasks</h1>
+                <Button variant="dark" size="sm">New task</Button>
+            </div>
+            
             <br/>
             <Table striped bordered hover responsive variant="dark" className="text-center">
                 <thead>
@@ -75,4 +81,4 @@ const Home: React.FC = () => {
     );
 }
 
-export default Home;
+export default Tasks;
