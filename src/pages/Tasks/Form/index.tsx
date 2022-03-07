@@ -1,5 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Badge, Button, Form } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import api from '../../../services/api'
 
 import './index.css'
@@ -10,6 +11,8 @@ interface ITasks {
 }
 
 const TasksForm: React.FC = () => {
+
+    const navegate = useNavigate()
 
     const [model, setModel] = useState<ITasks>({
         title: '',
@@ -34,16 +37,20 @@ const TasksForm: React.FC = () => {
 
     }
 
+    function backTask(){
+        navegate('/tasks')
+    }
+
     return (
         <div className="container">
             <br/>
             <div className="task-header d-flex">
                 <h1>New task</h1>
-                <Button variant="dark" size="sm">Back</Button>
+                <Button variant="dark" size="sm" onClick={backTask}>Back</Button>
             </div>
             <div className="row container">
                 <Form onSubmit={onSubmit}>
-                    <Form.Group>
+                    <Form.Group className="mb-3">
                         <Form.Label>Title</Form.Label>
                         <Form.Control 
                             type="text" 
@@ -52,8 +59,7 @@ const TasksForm: React.FC = () => {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => updateModel(e)} 
                         />
                     </Form.Group>
-
-                    <Form.Group>
+                    <Form.Group className="mb-3">
                         <Form.Label>Description</Form.Label>
                         <Form.Control 
                             as="textarea" 
