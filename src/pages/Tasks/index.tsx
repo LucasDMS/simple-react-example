@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Badge, Button, Table } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import api from '../../services/api'
 
 import moment from 'moment'
@@ -18,6 +19,7 @@ interface ITasks {
 const Tasks: React.FC = () => {
 
     const [ tasks, setTasks ] = useState<ITasks[]>([])
+    const navegate = useNavigate()
 
     useEffect(() => {
         loadTasks()
@@ -33,12 +35,16 @@ const Tasks: React.FC = () => {
         return moment(date).format('DD/MM/YYYY')
     }
 
+    function newTask(){
+        navegate('/tasks_form')
+    }
+
     return (
         <div className="container">
             <br/>
             <div className="task-header d-flex">
                 <h1>Tasks</h1>
-                <Button variant="dark" size="sm">New task</Button>
+                <Button variant="dark" size="sm" onClick={newTask}>New task</Button>
             </div>
             
             <br/>
