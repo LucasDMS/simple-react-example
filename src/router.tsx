@@ -3,15 +3,17 @@ import { Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
 import Tasks from "./pages/Tasks"
-import TasksForm from "./pages/Tasks/Form"
+import TaskForm from "./pages/Tasks/Form"
+import TaskDetail from "./pages/Tasks/Detail"
 
 const Router: React.FC = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/tasks" element={<Tasks />} />
-            <Route path="/tasks_form" element={<TasksForm />} />
-            <Route path="/tasks_form/:id" element={<TasksForm />} />
+            <Route path="/tasks_form" element={<TaskForm />} />
+            <Route path="/tasks_form/:id" element={<TaskForm />} />
+            <Route path="/tasks_detail/:id" element={<TaskDetail />} />
         </Routes>
     )
 }
