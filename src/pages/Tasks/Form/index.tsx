@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Badge, Button, Table } from 'react-bootstrap'
-
-import moment from 'moment'
+import api from '../../../services/api'
 
 import './index.css'
 
