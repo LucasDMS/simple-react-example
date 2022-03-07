@@ -1,18 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { Badge, Button, Form } from 'react-bootstrap'
+import api from '../../../services/api'
 
 import './index.css'
 
 interface ITasks {
-    id: number;
     title: string;
     description: string;
-    finished:boolean;
-    created_at: Date;
-    updated_at: Date;
 }
 
 const TasksForm: React.FC = () => {
+
+    const [model, setModel] = useState<ITasks>({
+        title: '',
+        description: ''
+    })
+
+    function updateModel(e: ChangeEvent<HTMLInputElement>){
+
+        setModel({
+            ...model,
+            [e.target.name]: e.target.value
+        })
+
+    }
+
+    async function onSubmit(e: ChangeEvent<HTMLFormElement>){
+        e.preventDefault()
+
+        const response = await api.post('/tasks', model)
+
+        console.log(response)
+
+    }
 
     return (
         <div className="container">
@@ -22,16 +42,27 @@ const TasksForm: React.FC = () => {
                 <Button variant="dark" size="sm">Back</Button>
             </div>
             <div className="row container">
-                <Form>
+                <Form onSubmit={onSubmit}>
                     <Form.Group>
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" placeholder="Enter title" />
+                        <Form.Control 
+                            type="text" 
+                            placeholder="Enter title" 
+                            name="title" 
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => updateModel(e)} 
+                        />
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control 
+                            as="textarea" 
+                            rows={3}
+                            name="description" 
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => updateModel(e)}
+                        />
                     </Form.Group>
+                  
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
