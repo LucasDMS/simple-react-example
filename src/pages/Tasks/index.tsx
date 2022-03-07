@@ -39,6 +39,10 @@ const Tasks: React.FC = () => {
         navegate('/tasks_form')
     }
 
+    function editTask(id: number){
+        navegate(`/tasks_form/${id}`)
+    }
+
     return (
         <div className="container">
             <br/>
@@ -71,7 +75,7 @@ const Tasks: React.FC = () => {
                                     </Badge>
                                 </td>
                                 <td>
-                                    <Button size="sm">Edit</Button>{' '}
+                                    <Button size="sm" onClick={() => editTask(task.id)}>Edit</Button>{' '}
                                     <Button size="sm" variant="success">Finish</Button>{' '}
                                     <Button size="sm" variant="info">View</Button>{' '}
                                     <Button size="sm" variant="danger">Remove</Button>
