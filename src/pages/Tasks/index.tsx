@@ -46,6 +46,17 @@ const Tasks: React.FC = () => {
     function viewTask(id: number){
         navigate(`/tasks/${id}`)
     }
+
+    async function finishTask(id: number){
+        await api.patch(`/tasks/${id}`)
+        loadTasks()
+    }
+
+    async function deleteTask(id: number){
+        await api.delete(`/tasks/${id}`)
+        loadTasks()
+    }
+
     return (
         <div className="container">
             <br/>
@@ -78,10 +89,10 @@ const Tasks: React.FC = () => {
                                     </Badge>
                                 </td>
                                 <td>
-                                    <Button size="sm" onClick={() => editTask(task.id)}>Edit</Button>{' '}
-                                    <Button size="sm" variant="success">Finish</Button>{' '}
+                                    <Button size="sm" disabled={task.finished} onClick={() => editTask(task.id)}>Edit</Button>{' '}
+                                    <Button size="sm"  disabled={task.finished} variant="success" onClick={() => finishTask(task.id)}>Finish</Button>{' '}
                                     <Button size="sm" variant="info" onClick={() => viewTask(task.id)}>View</Button>{' '}
-                                    <Button size="sm" variant="danger">Remove</Button>
+                                    <Button size="sm" variant="danger" onClick={() => deleteTask(task.id)}>Remove</Button>
                                 </td>
                             </tr>
                         ))
