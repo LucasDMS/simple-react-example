@@ -13,7 +13,7 @@ const Router: React.FC = () => {
             <Route path="/tasks" element={<Tasks />} />
             <Route path="/tasks_form" element={<TaskForm />} />
             <Route path="/tasks_form/:id" element={<TaskForm />} />
-            <Route path="/tasks_detail/:id" element={<TaskDetail />} />
+            <Route path="/tasks/:id" element={<TaskDetail />} />
         </Routes>
     )
 }

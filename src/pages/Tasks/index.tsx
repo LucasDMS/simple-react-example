@@ -19,7 +19,7 @@ interface ITasks {
 const Tasks: React.FC = () => {
 
     const [ tasks, setTasks ] = useState<ITasks[]>([])
-    const navegate = useNavigate()
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadTasks()
@@ -36,15 +36,15 @@ const Tasks: React.FC = () => {
     }
 
     function newTask(){
-        navegate('/tasks_form')
+        navigate('/tasks_form')
     }
 
     function editTask(id: number){
-        navegate(`/tasks_form/${id}`)
+        navigate(`/tasks_form/${id}`)
     }
 
     function viewTask(id: number){
-        navegate(`/tasks/${id}`)
+        navigate(`/tasks/${id}`)
     }
     return (
         <div className="container">
